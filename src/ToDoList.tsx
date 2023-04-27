@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-
+import {useState} from "react";
+import {useForm} from "react-hook-form";
 
 
 // useForm 사용 없이 상태관리
@@ -41,46 +40,72 @@ import { useForm } from "react-hook-form";
 // }
 
 
-
 // useForm 사용하여 상태 관리
 
-export default function ToDoList () {
+interface IForm {
+  email: string;
+  firstName: string;
+  lastName: string;
+  username: string;
+  password: string;
+  password1: string;
+};
+export default function ToDoList() {
 
-  const { register, watch, handleSubmit, formState } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IForm>({
+    defaultValues: {
+      email: "@naver.com",
+    },
+  });
 
   // register -> onChange / onBlur의 함수가 이미 들어있는 객
   // watch -> form의 입력값들의 변화를 관찰할 수 있게 해주는 함수
   // handleSubmit ->  validation
 
-  const onValid = (data:any) => {
+  const onValid = (data: any) => {
     console.log(data);
-    console.log(formState.errors);
+    // console.log(formState.errors);
   }
 
-  console.log(register('toDo'));
-  console.log(watch());
+  // formState
+  // console.log(register('toDo'));
+  // console.log(watch());
 
   return (
     <div>
       <form
-        style={{ display: "flex", flexDirection: "column" }}
+        style={{display: "flex", flexDirection: "column"}}
         onSubmit={handleSubmit(onValid)}
       >
-        <input {...register("email", { required: true })} placeholder="Email" />
+        <input {...register("email", {
+            required: 'Email is required',
+            pattern: {
+              value: /^[A-Za-z0-9._%+-]+@naver.com$/,
+              message: "Only naver.com emails allowed",
+            }
+          },
+        )} placeholder="Email"/>
+        <span> {errors?.email?.message as string}</span>
         <input
-          {...register("firstName", { required: true })}
+          {...register("firstName", {required: 'write First Name'})}
           placeholder="First Name"
         />
+        <span> {errors?.firstName?.message as string}</span>
         <input
-          {...register("lastName", { required: true })}
+          {...register("lastName", {required: 'write last Name'})}
           placeholder="Last Name"
         />
+        <span> {errors?.lastName?.message as string}</span>
         <input
-          {...register("username", { required: true, minLength: 10 })}
+          {...register("username", {required: true, minLength: 10})}
           placeholder="Username"
         />
         <input
-          {...register("password", { required: true, minLength: 5 })}
+          {...register("password", {required: true, minLength: 5})}
           placeholder="Password"
         />
         <input
