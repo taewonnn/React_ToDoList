@@ -142,3 +142,17 @@ export default function ToDoList() {
     </div>
   )
 }
+
+
+
+// useForm
+
+// register / handleSubmit 제공
+
+// Register
+// regitster 함수를 form 태그 안에 있는 모든 input에서 호출!
+// 검사 옵션 설정 가능
+
+//error 객체는 formState 안에 있어   (formState은 form의 state들이 들어 있고 그 중에 error도 있는 것)
+
+
