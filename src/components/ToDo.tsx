@@ -9,6 +9,13 @@ export default function ToDo({ text, category, id }:IToDo) {
     const {
       currentTarget: { name },
     } = event;
+    setToDos((oldToDos) => {
+      const targetIndex = oldToDos.findIndex(toDO => toDO.id === id);
+      const oldToDos = oldToDos[targetIndex];
+      const newTpDos ={text: text, id: id, category: "name"}
+
+      return oldToDos;
+    })
   };
 
   return (
@@ -26,3 +33,36 @@ export default function ToDo({ text, category, id }:IToDo) {
     </li>
   )
 }
+
+
+
+// 1. to do가 어디에 있는지 찾기
+// 2.
+
+// [
+//     {
+//         "text": "5",
+//         "id": 1683631294942,
+//         "category": "TO_DO"
+//     },
+//     {
+//         "text": "4",
+//         "id": 1683631293698,
+//         "category": "TO_DO"
+//     },
+//     {
+//         "text": "3",
+//         "id": 1683631292976,
+//         "category": "TO_DO"
+//     },
+//     {
+//         "text": "2",
+//         "id": 1683631291940,
+//         "category": "TO_DO"
+//     },
+//     {
+//         "text": "1",
+//         "id": 1683631291133,
+//         "category": "TO_DO"
+//     }
+// ]
