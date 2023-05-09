@@ -11,10 +11,9 @@ export default function ToDo({ text, category, id }:IToDo) {
     } = event;
     setToDos((oldToDos) => {
       const targetIndex = oldToDos.findIndex(toDO => toDO.id === id);
-      const oldToDos = oldToDos[targetIndex];
-      const newToDos ={text: text, id: id, category: "name"};
+      const newToDos ={text: text, id: id, category: name as any };
 
-      return oldToDos;
+      return [...oldToDos.slice(0, targetIndex), newToDos, ...oldToDos.slice(targetIndex + 1)];
     })
   };
 
@@ -79,5 +78,9 @@ export default function ToDo({ text, category, id }:IToDo) {
 // const front = ['pizza']    const back = ['kimchi', 'kimbab']
 
 // 이 때 mango를 삭제하고 두 배열로 나누는 방법은 ?? -> slice() 사용;
+// const front = food.slice(0,1)     const back = food.slice(2,4)
 
 // 3. finalPart = [...front, "gam", ...back]
+
+
+// [...food.slice(0,1), "gam", ...food.slice(2,4)]
