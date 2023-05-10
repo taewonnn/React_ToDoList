@@ -10,3 +10,10 @@ export const toDoState = atom<IToDo[]>({
   key: "toDo",
   default: [],
 });
+
+export const toDoSelector = selector({
+  key: "toDoSelector",
+  get: ({ get }) => {
+    return "hello";
+  },
+})
