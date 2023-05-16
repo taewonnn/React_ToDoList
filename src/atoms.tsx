@@ -44,3 +44,11 @@ export const minuteState = atom({
   key: "minutes",
   default: 0,
 })
+
+
+export const hourSelector = selector({
+  key: "hours",
+  get: ({get}) => {
+    return 1212122;
+  }
+})
