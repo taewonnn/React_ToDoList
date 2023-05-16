@@ -32,3 +32,15 @@ export const toDoSelector = selector({
     return toDos.filter((toDo) => toDo.category === category);
   },
 });
+
+
+
+
+
+
+// get Selector
+
+export const minuteState = atom({
+  key: "minutes",
+  default: 0,
+})

@@ -1,6 +1,8 @@
 import React from 'react';
 import { createGlobalStyle } from "styled-components";
 import ToDoList from "./components/ToDoList";
+import {useRecoilState} from "recoil";
+import {minuteState} from "./atoms";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -70,12 +72,26 @@ a {
 
 // Get Selector
 function App() {
+
+  // useRecoilState => atom의 값에 더해서 atom을 수정할 함수까지 준다!!
+  const [minutes, setMinutes] = useRecoilState(minuteState)
+
+  const onMinutesChange = (event:React.FormEvent<HTMLInputElement>) => {
+    setMinutes(+event.currentTarget.value);
+  }
+
   return (
+
     <>
-      <input type="number" placeholder="Minutes"/>
+      <input value={minutes} onChange={} type="number" placeholder="Minutes"/>
       <input type="number" placeholder="Hours"/>
     </>
   );
 }
 
 export default App;
+
+
+
+// 80번째 줄 앞에 +를 붙인 이유? => 그냥 event.currentTarget.value는 string임 근데, atom에 정의해둔 건 0으로 Number이어야 한다.
+// string -> number로 바꿀 떄, 앞에 +를 붙여주면됨!!  ex. +"1" => number
