@@ -83,7 +83,7 @@ function App() {
   return (
 
     <>
-      <input value={minutes} onChange={} type="number" placeholder="Minutes"/>
+      <input value={minutes} onChange={onMinutesChange} type="number" placeholder="Minutes"/>
       <input type="number" placeholder="Hours"/>
     </>
   );
