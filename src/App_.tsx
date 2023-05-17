@@ -74,20 +74,24 @@ a {
 function App() {
 
   // useRecoilState => atom의 값에 더해서 atom을 수정할 함수까지 준다!!
-  const [minutes, setMinutes] = useRecoilState(minuteState)
+  const [minutes, setMinutes] = useRecoilState(minuteState);
 
-  const hours = useRecoilValue(hourSelector);
+  const [hours, setHours] = useRecoilState(hourSelector);
 
   const onMinutesChange = (event:React.FormEvent<HTMLInputElement>) => {
     setMinutes(+event.currentTarget.value);
     console.log(+event.currentTarget.value)
   }
 
+  const onHoursChange = (event:React.FormEvent<HTMLInputElement>) => {
+    setHours(+event.currentTarget.value);
+  }
+
   return (
 
     <>
       <input value={minutes} onChange={onMinutesChange} type="number" placeholder="Minutes"/>
-      <input  value={hours} type="number" placeholder="Hours"/>
+      <input  value={hours}  onChange={onHoursChange} type="number" placeholder="Hours"/>
     </>
   );
 }
