@@ -53,6 +53,8 @@ export const hourSelector = selector<number>({
     return minutes / 60;
   },
   set: ({set}, newValue) => {
-    console.log(newValue)
+    const minutes = Number(newValue) * 60;
+    set(minuteState, minutes);
+    console.log(newValue);
   }
-})
+});
