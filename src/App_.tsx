@@ -98,3 +98,7 @@ export default App;
 
 // 80번째 줄 앞에 +를 붙인 이유? => 그냥 event.currentTarget.value는 string임 근데, atom에 정의해둔 건 0으로 Number이어야 한다.
 // string -> number로 바꿀 떄, 앞에 +를 붙여주면됨!!  ex. +"1" => number
+
+
+// selector - set
+// state를 set하는 것을 도와줌!
